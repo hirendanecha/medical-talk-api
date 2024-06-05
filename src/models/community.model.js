@@ -18,20 +18,12 @@ var Community = function (community) {
   this.Zip = community?.Zip;
   this.County = community?.County;
   this.address = community?.address;
+  this.applicationType = community?.applicationType;
 };
 
-Community.findAllCommunity = async function (
-  selectedCard,
-  selectedCountry,
-  selectedState,
-  selectedAreas
-) {
+Community.findAllCommunity = async function (selectedCard, selectedAreas) {
   console.log(selectedCard, "selectedCard");
-  let whereCondition = `c.pageType = 'community' AND c.isApprove = 'Y' ${
-    selectedCountry || selectedState
-      ? `AND c.Country LIKE '%${selectedCountry}%' AND c.State LIKE '%${selectedState}%'`
-      : ""
-  }`;
+  let whereCondition = `c.pageType = 'community' AND c.isApprove = 'Y'`;
   if (selectedCard) {
     whereCondition += ` AND pe.eId in (${selectedCard})`;
   }

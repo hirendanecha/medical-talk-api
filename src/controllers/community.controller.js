@@ -72,7 +72,7 @@ exports.createCommunity = async function (req, res) {
         }
         return res.json({
           error: false,
-          message: "Your community will be approve by admin",
+          message: "Your application will be approve by admin",
           data: community,
         });
       }
@@ -87,7 +87,7 @@ exports.editCommunity = async function name(req, res) {
   if (community) {
     return res.json({
       error: false,
-      message: "update community successfully",
+      message: "update application successfully",
     });
   } else {
     res.status(500).send({
@@ -114,12 +114,12 @@ exports.approveCommunity = function (req, res) {
         if (isApprove === "Y") {
           res.json({
             error: false,
-            message: "Community approved successfully",
+            message: "Application approved successfully",
           });
         } else {
           res.json({
             error: false,
-            message: "Community unapproved successfully",
+            message: "Application unapproved successfully",
           });
         }
       }
