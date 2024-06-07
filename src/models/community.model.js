@@ -23,7 +23,13 @@ var Community = function (community) {
 
 Community.findAllCommunity = async function (selectedCard, selectedAreas) {
   console.log(selectedCard, "selectedCard");
+  let query = "";
   let whereCondition = `c.pageType = 'community' AND c.isApprove = 'Y'`;
+  // ${
+  //   selectedCountry || selectedState
+  //     ? `AND c.Country LIKE '%${selectedCountry}%' AND c.State LIKE '%${selectedState}%'`
+  //     : ""
+  // }`;
   if (selectedCard) {
     whereCondition += ` AND pe.eId in (${selectedCard})`;
   }
@@ -41,7 +47,6 @@ Community.findAllCommunity = async function (selectedCard, selectedAreas) {
   //   count: searchCount?.[0]?.count || 0,
   //   data: searchData,
   // };
-  let query = "";
   query = `select c.* from community as c left join practitioner_emphasis as pe on pe.communityId = c.Id left join practitioner_area as pa on pa.communityId = c.Id where ${whereCondition} GROUP BY c.Id order by c.Id desc;`;
   // const communityList = await executeQuery(query, [id]);
   console.log("query===>", query);
